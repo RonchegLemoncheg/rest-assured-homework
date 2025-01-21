@@ -23,5 +23,11 @@ public class Constants {
             }
             """;
     public static final String ERROR_MESSAGE = "User not authorized!";
+    public static final String MESHUGGAH_DESCRIPTION = "Picture featuring the greatest band of all time";
+    public static final String PETSTORESWAGGERV2 = "https://petstore.swagger.io/v2";
+    public static final String BOOKER_HEROKU = "https://restful-booker.herokuapp.com";
+    public static final String BOOK_STORE = "https://bookstore.toolsqa.com";
+    public static final String RICHARD_SILVERMAN = "Richard E. Silverman";
+    public static final String ADDY_OSMANI = "Addy Osmani";
 
 }

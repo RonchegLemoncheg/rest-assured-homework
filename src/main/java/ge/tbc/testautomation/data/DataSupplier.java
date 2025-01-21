@@ -1,4 +1,5 @@
 package ge.tbc.testautomation.data;
+import com.github.javafaker.Faker;
 import io.restassured.response.Response;
 import org.testng.annotations.DataProvider;
 
@@ -27,5 +28,20 @@ public class DataSupplier {
             bookData[i][1] = response.jsonPath().getString("books[" + index + "].author");
         }
         return bookData;
+    }
+
+    @DataProvider(name = "petNameGenerator")
+    public Object[][] petNames() {
+        Faker faker = new Faker();
+
+        String petName = faker.animal().name();
+        int petId = faker.number().numberBetween(1000, 9999);
+        String petStatus = "available";
+        String newPetStatus = "sold";
+        String newPetName = faker.animal().name();
+
+        return new Object[][] {
+                { petName, petId, petStatus, newPetName, newPetStatus }
+        };
     }
 }

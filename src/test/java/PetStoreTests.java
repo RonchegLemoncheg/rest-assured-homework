@@ -1,66 +1,30 @@
+import com.github.javafaker.Faker;
 import ge.tbc.testautomation.data.Constants;
 import ge.tbc.testautomation.data.DataSupplier;
+import ge.tbc.testautomation.steps.PetStoreSteps;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
+import org.json.JSONObject;
+import org.junit.Before;
+import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
-import util.Util;
+
+import java.io.File;
+import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import static io.restassured.RestAssured.given;
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 
-public class ApiTests1 {
+public class PetStoreTests {
+    PetStoreSteps petStoreSteps;
 
-    @Test
-    public void validateBooks() {
-        Response response = given()
-                .baseUri("https://bookstore.toolsqa.com")
-                .basePath("/BookStore/v1")
-                .when()
-                .get("/Books")
-                .then()
-                .assertThat()
-                .statusCode(200)
-                .extract()
-                .response();
-
-        String firstBookISBN = response.jsonPath().getString("books[0].isbn");
-        String firstAuthorInformation = response.jsonPath().getString("books[0].author");
-        String secondBookISBN = response.jsonPath().getString("books[1].isbn");
-        String secondAuthorInformation = response.jsonPath().getString("books[1].author");
-
-        Util.checkEachBook(firstBookISBN, firstAuthorInformation);
-        Util.checkEachBook(secondBookISBN, secondAuthorInformation);
+    @BeforeTest
+    public void setUp(){
+        petStoreSteps = new PetStoreSteps();
     }
-
-    @Test(dataProvider = "bookSupplier", dataProviderClass = DataSupplier.class)
-    public void validateBooksWithDataProvider(String isbn, String author) {
-        given()
-                .baseUri("https://bookstore.toolsqa.com")
-                .basePath("/BookStore/v1")
-                .queryParam("ISBN", isbn)
-                .when()
-                .get("/Book")
-                .then()
-                .assertThat()
-                .statusCode(200)
-                .body("author", equalTo(author))
-                .body("isbn", equalTo(isbn));
-    }
-
-    @Test
-    public void deleteBook() {
-        given()
-                .baseUri("https://bookstore.toolsqa.com")
-                .basePath("/BookStore/v1")
-                .queryParam("ISBN", "9781449325862")
-                .when()
-                .delete("/Book")
-                .then()
-                .assertThat()
-                .statusCode(401)
-                .body("message", equalTo(Constants.ERROR_MESSAGE));
-    }
-
     @Test
     public void createPetOrder() {
         String requestBody = Constants.REQUEST_BODY;
@@ -151,24 +115,34 @@ public class ApiTests1 {
         }
     }
 
-    @Test
-    public void validateOpenLibrarySearch() {
-        String keyword = Constants.HARRY_POTTER;
+    @Test(dataProvider = "petNameGenerator", dataProviderClass = DataSupplier.class)
+    public void addPetAndValidate(String petName, int petId, String petStatus, String newPetName, String newPetStatus){
+        RestAssured.baseURI = Constants.PETSTORESWAGGERV2;
 
-        given()
-                .baseUri("https://openlibrary.org")
-                .basePath("/search.json")
-                .queryParam("q", keyword)
-                .when()
-                .get()
-                .then()
-                .assertThat()
-                .statusCode(200)
-                .body("docs.size()", greaterThan(0))
-                .body("docs[0].title", equalTo(Constants.PHILOSOPHERS_STONE))
-                .body("docs[0].author_name[0]", equalTo(Constants.ROWLING))
-                .body("docs[0].place", hasItems(Constants.ENGLAND, Constants.SCHOOL_OF_WITCHCRAFT, Constants.PLATFORM));
+        petStoreSteps
+                .addPetWithID(petName, petStatus, petId)
+                .filterByStatus(petStatus)
+                .checkIfContainsID(petId)
+                .validatePet(petId,petName,petStatus)
+                .putPetWithID(newPetName,newPetStatus,petId)
+                .getPet(petId)
+                .checkPet(newPetName,newPetStatus);
 
     }
 
+    @Test
+    public void postPicture(){
+        RestAssured.baseURI = Constants.PETSTORESWAGGERV2;
+
+        // ფაილს DataProvider-ში ვერ გავიტანდი და ბარემ ეს ორიც აქ დავტოვე და ცალკე DataProvider არ გავუკეთე
+        File file = new File("meshuggah.jpg");
+        int petId = 567;
+        String additionalMetadata = Constants.MESHUGGAH_DESCRIPTION;
+
+        petStoreSteps
+                .uploadImage(file,additionalMetadata,petId)
+                .checkImageMessage(additionalMetadata,file.getName())
+                .checkFileSizes(file);
+
+    }
 }
