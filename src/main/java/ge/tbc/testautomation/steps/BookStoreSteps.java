@@ -1,15 +1,20 @@
 package ge.tbc.testautomation.steps;
 
 import com.github.javafaker.Faker;
+import ge.tbc.testautomation.data.models.BookStore.Book;
+import ge.tbc.testautomation.data.models.BookStore.BookResponse;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import org.hamcrest.Matchers;
 import org.json.JSONObject;
 
+import java.util.List;
+
 import static io.restassured.RestAssured.given;
 
 public class BookStoreSteps {
     Response response;
+    BookResponse bookResponse;
     String token;
     RequestSpecification requestSpec;
 
@@ -93,6 +98,40 @@ public class BookStoreSteps {
         response.then()
                 .body("books[0].author", Matchers.equalTo(name1))
                 .body("books[1].author", Matchers.equalTo(name2));
+        return this;
+    }
+
+    public BookStoreSteps getBooksFromApi() {
+        response = given()
+                .when()
+                .get("/BookStore/v1/Books");
+        bookResponse = response.as(BookResponse.class);
+        return this;
+    }
+
+    public BookStoreSteps validatePagesLessThan1000() {
+        List<Book> books = bookResponse.getBooks();
+        books.forEach(book -> {
+            if (book.getPages() >= 1000) {
+                throw new AssertionError("Book " + book.getTitle() + " has more than 1000 pages.");
+            }
+        });
+        return this;
+    }
+
+    public BookStoreSteps validateLastTwoAuthors(String expectedAuthor1, String expectedAuthor2) {
+        List<Book> books = bookResponse.getBooks();
+        String author1 = books.get(books.size() - 2).getAuthor();
+        String author2 = books.get(books.size() - 1).getAuthor();
+
+        if (!author1.equals(expectedAuthor1)) {
+            throw new AssertionError("Expected author " + expectedAuthor1 + ", got " + author1);
+        }
+
+        if (!author2.equals(expectedAuthor2)) {
+            throw new AssertionError("Expected author " + expectedAuthor2 + ", got " + author2);
+        }
+
         return this;
     }
 }

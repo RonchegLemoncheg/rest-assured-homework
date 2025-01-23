@@ -95,4 +95,17 @@ public class BookStoreTests {
                 .checkFirstTwoAuthors(Constants.RICHARD_SILVERMAN, Constants.ADDY_OSMANI);
 
     }
+
+
+    @Test
+    public void testBookPagesAndAuthors() {
+        String expectedAuthor1 = Constants.MARIJN_HAVERBEKE;
+        String expectedAuthor2 = Constants.NICHOLAS_ZAKAS;
+        RestAssured.baseURI = Constants.BOOK_STORE;
+
+        bookStoreSteps
+                .getBooksFromApi()
+                .validatePagesLessThan1000()
+                .validateLastTwoAuthors(expectedAuthor1, expectedAuthor2);
+    }
 }

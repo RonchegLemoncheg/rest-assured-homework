@@ -1,4 +1,5 @@
 package ge.tbc.testautomation.data;
+
 import com.github.javafaker.Faker;
 import io.restassured.response.Response;
 import org.testng.annotations.DataProvider;
@@ -40,8 +41,30 @@ public class DataSupplier {
         String newPetStatus = "sold";
         String newPetName = faker.animal().name();
 
-        return new Object[][] {
-                { petName, petId, petStatus, newPetName, newPetStatus }
+        return new Object[][]{
+                {petName, petId, petStatus, newPetName, newPetStatus}
         };
+    }
+
+    @DataProvider(name = "userInfoProvider")
+    public Object[][] userInfo() {
+        return new Object[][]{
+                {
+                        "john@mail.com"
+                        , "Jhon"
+                        , "changeme"
+                        , "https://i.imgur.com/LDOO4Qs.jpg"}};
+    }
+
+
+    @DataProvider(name = "bookingInfoProvider")
+    public Object[][] bookingInfo() {
+        return new Object[][]{
+                {
+                        "admin"
+                        , "password123"
+                        , "Roncheg"
+                        , "Lemoncheg"
+                        , "Gverberg", "Gvainus"}};
     }
 }
