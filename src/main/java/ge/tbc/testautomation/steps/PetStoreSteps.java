@@ -1,11 +1,17 @@
 package ge.tbc.testautomation.steps;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.javafaker.Faker;
+import ge.tbc.testautomation.data.models.PetStore.Category;
+import ge.tbc.testautomation.data.models.PetStore.PostPetStore;
+import ge.tbc.testautomation.data.models.PetStore.Status;
+import ge.tbc.testautomation.data.models.PetStore.TagsItem;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import org.json.JSONObject;
 
 import java.io.File;
+import java.util.List;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -19,18 +25,24 @@ public class PetStoreSteps {
     Response response;
     Faker faker = new Faker();
 
-    public PetStoreSteps addPetWithID(String name, String status, int ID){
-        String petCategory = faker.animal().name();
+    public PetStoreSteps addPetWithID(String name, String status, int ID) throws Exception {
+        ObjectMapper mapper = new ObjectMapper();
 
-        JSONObject petBody = new JSONObject();
-        petBody.put("id", ID);
-        petBody.put("name", name);
-        petBody.put("status", status);
-        petBody.put("category", new JSONObject().put("name", petCategory));
+        Category category = new Category(1, "Dog");
+        TagsItem tag = new TagsItem();
+        tag.setId(1);
+        tag.setName("Tag1");
+
+        PostPetStore pet = new PostPetStore();
+        pet.setId(ID);
+        pet.setName(name);
+        pet.setCategory(category);
+        pet.setTags(List.of(tag));
+        pet.setStatus(Status.valueOf(status.toUpperCase()));
 
         Response addPetResponse = given()
                 .contentType("application/json")
-                .body(petBody.toString())
+                .body(mapper.writeValueAsString(pet))
                 .when()
                 .post("/pet");
 
@@ -50,28 +62,30 @@ public class PetStoreSteps {
         return this;
     }
 
-    public PetStoreSteps validatePet(int petId, String petName, String petStatus){
-        Map<String, Object> petResponseJson = response
-                .then()
-                .extract()
-                .jsonPath()
-                .get("find { it.id == " + petId + " }");
-        assertThat(petResponseJson, notNullValue());
+    public PetStoreSteps validatePet(int petId, String petName, String petStatus) throws Exception {
+        ObjectMapper mapper = new ObjectMapper();
 
-        assertThat(petResponseJson.get("name"), equalTo(petName));
-        assertThat(petResponseJson.get("status"), equalTo(petStatus));
+        PostPetStore pet = mapper.readValue(response.asString(), PostPetStore.class);
+
+        assertThat(pet, notNullValue());
+        assertThat(pet.getId(), equalTo(petId));
+        assertThat(pet.getName(), equalTo(petName));
+        assertThat(pet.getStatus().getValue(), equalTo(petStatus));
+
         return this;
     }
 
-    public PetStoreSteps putPetWithID(String newPetName, String status, int petId){
-        JSONObject updatedPetBody = new JSONObject();
-        updatedPetBody.put("id", petId);
-        updatedPetBody.put("name", newPetName);
-        updatedPetBody.put("status", status);
+    public PetStoreSteps putPetWithID(String newPetName, String status, int petId) throws Exception {
+        ObjectMapper mapper = new ObjectMapper();
+
+        PostPetStore pet = new PostPetStore();
+        pet.setId(petId);
+        pet.setName(newPetName);
+        pet.setStatus(Status.valueOf(status.toUpperCase()));
 
         Response updatePetResponse = given()
                 .contentType("application/json")
-                .body(updatedPetBody.toString())
+                .body(mapper.writeValueAsString(pet))
                 .when()
                 .put("/pet");
 

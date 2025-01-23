@@ -116,7 +116,7 @@ public class PetStoreTests {
     }
 
     @Test(dataProvider = "petNameGenerator", dataProviderClass = DataSupplier.class)
-    public void addPetAndValidate(String petName, int petId, String petStatus, String newPetName, String newPetStatus){
+    public void addPetAndValidate(String petName, int petId, String petStatus, String newPetName, String newPetStatus) throws Exception {
         RestAssured.baseURI = Constants.PETSTORESWAGGERV2;
 
         petStoreSteps

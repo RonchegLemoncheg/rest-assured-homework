@@ -29,5 +29,8 @@ public class Constants {
     public static final String BOOK_STORE = "https://bookstore.toolsqa.com";
     public static final String RICHARD_SILVERMAN = "Richard E. Silverman";
     public static final String ADDY_OSMANI = "Addy Osmani";
+    public static final String MARIJN_HAVERBEKE = "Marijn Haverbeke";
+    public static final String NICHOLAS_ZAKAS = "Nicholas C. Zakas";
+    public static final String AUTH_LINK_escuelajs = "https://api.escuelajs.co/api";
 
 }
