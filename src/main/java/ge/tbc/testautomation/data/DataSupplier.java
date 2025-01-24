@@ -67,4 +67,12 @@ public class DataSupplier {
                         , "Lemoncheg"
                         , "Gverberg", "Gvainus"}};
     }
+
+    @DataProvider(name = "bookingData")
+    public Object[][] createBookingData() {
+        return new Object[][] {
+                { 1, "Roncheg", "Lemoncheg", 200, true, "2023-01-01", "2023-01-10", "Vegan", null, 150.50 },
+                { 2, "Gverberg", "Gvainus", 300, false, "2023-02-01", "2023-02-10", "Gluten-Free", "12345678", 180.75 }
+        };
+    }
 }

@@ -1,14 +1,18 @@
 import com.github.javafaker.Faker;
 import ge.tbc.testautomation.data.Constants;
 import ge.tbc.testautomation.data.DataSupplier;
+import ge.tbc.testautomation.data.models.PetStore.Pet;
 import ge.tbc.testautomation.steps.PetStoreSteps;
+import io.qameta.allure.restassured.AllureRestAssured;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import org.json.JSONObject;
 import org.junit.Before;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
+import util.XmlUtils;
 
+import javax.xml.bind.JAXBException;
 import java.io.File;
 import java.util.Map;
 import java.util.regex.Matcher;
@@ -17,6 +21,8 @@ import java.util.regex.Pattern;
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 public class PetStoreTests {
     PetStoreSteps petStoreSteps;
@@ -24,6 +30,7 @@ public class PetStoreTests {
     @BeforeTest
     public void setUp(){
         petStoreSteps = new PetStoreSteps();
+        RestAssured.filters(new AllureRestAssured());
     }
     @Test
     public void createPetOrder() {
@@ -145,4 +152,15 @@ public class PetStoreTests {
                 .checkFileSizes(file);
 
     }
+
+    @Test
+    public void xmlPostTest() throws JAXBException {
+
+        petStoreSteps.createPet()
+                .serializePetToXml()
+                .postPetXmlToApi()
+                .validateResponse()
+                .validatePet();
+    }
+
 }
