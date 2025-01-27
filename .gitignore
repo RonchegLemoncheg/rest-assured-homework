@@ -1,4 +1,3 @@
-target/
 pom.xml.tag
 pom.xml.releaseBackup
 pom.xml.versionsBackup
@@ -18,3 +17,13 @@ buildNumber.properties
 
 logs
 .idea
+
+# Ignore everything in the target directory
+/target/*
+
+# Allow the generated-sources directory inside target
+!/target/generated-sources
+
+# Allow all files and subdirectories inside generated-sources
+/target/generated-sources/**
+

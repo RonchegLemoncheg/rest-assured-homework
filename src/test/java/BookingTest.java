@@ -1,6 +1,8 @@
 import ge.tbc.testautomation.data.DataSupplier;
 import ge.tbc.testautomation.data.models.Responses.UpdateBookingResponse;
 import ge.tbc.testautomation.steps.BookingSteps;
+import io.qameta.allure.restassured.AllureRestAssured;
+import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -11,6 +13,7 @@ public class BookingTest {
     @BeforeMethod
     public void setUp() {
         bookingSteps = new BookingSteps();
+        RestAssured.filters(new AllureRestAssured());
     }
 
     @Test(dataProvider = "bookingInfoProvider", dataProviderClass = DataSupplier.class)
