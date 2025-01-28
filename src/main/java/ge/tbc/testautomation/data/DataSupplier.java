@@ -75,4 +75,17 @@ public class DataSupplier {
                 { 2, "Gverberg", "Gvainus", 300, false, "2023-02-01", "2023-02-10", "Gluten-Free", "12345678", 180.75 }
         };
     }
+
+    @DataProvider(name = "passwordSupplier")
+    public Object[][] providePasswords() {
+        Faker faker = new Faker();
+        return new Object[][]{
+                {faker.lorem().characters(7)},
+                {faker.internet().password(8, 9, true, false, false)},
+                {faker.internet().password(8, 9, false, true, false)},
+                {faker.internet().password(8, 9, false, false, true)},
+                {faker.internet().password(8, 9, false, false, false)},
+                {"Password1!"}
+        };
+    }
 }

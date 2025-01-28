@@ -1,3 +1,4 @@
+import ge.tbc.testautomation.data.Constants;
 import io.qameta.allure.restassured.AllureRestAssured;
 import io.restassured.RestAssured;
 import io.restassured.builder.RequestSpecBuilder;
@@ -30,7 +31,7 @@ public class OpenApiTests {
                                 .objectMapperConfig(objectMapperConfig()
                                         .defaultObjectMapper(JacksonObjectMapper.jackson())))
                         .addFilter(new ErrorLoggingFilter())
-                        .setBaseUri("https://petstore3.swagger.io/api/v3")));
+                        .setBaseUri(Constants.SWAGGER_LINK)));
         RestAssured.filters(new AllureRestAssured());
     }
 

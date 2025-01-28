@@ -1,0 +1,1 @@
+{"uuid":"3f1d8a09-3193-4680-bfde-1c27c96d69a3","name":"Default Suite","children":["08d99d2c-7c2b-421f-86e2-c0aa832abbd3"],"befores":[{"name":"createApiClient","status":"passed","stage":"finished","description":"","steps":[],"attachments":[],"parameters":[],"start":1737983210769,"stop":1737983211994}],"afters":[],"start":1737983210720,"stop":1737983219378}

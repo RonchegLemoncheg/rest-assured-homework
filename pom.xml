@@ -263,6 +263,7 @@
 
                 </executions>
             </plugin>
+
             <plugin>
                 <groupId>org.assertj</groupId>
                 <artifactId>assertj-assertions-generator-maven-plugin</artifactId>
@@ -286,6 +287,33 @@
                     <generateSoftAssertions>true</generateSoftAssertions>
                 </configuration>
             </plugin>
+
+
+            <plugin>
+                <groupId>org.assertj</groupId>
+                <artifactId>assertj-assertions-generator-maven-plugin</artifactId>
+                <version>2.2.0</version>
+                <executions>
+                    <execution>
+                        <id>assertj</id>
+                        <goals>
+                            <goal>generate-assertions</goal>
+                        </goals>
+                        <phase>generate-sources</phase>
+                        <configuration>
+                            <packages>
+                                <param>localhost.client.model</param>
+                            </packages>
+                            <hierarchical>true</hierarchical>
+                            <entryPointClassPackage>org.assertj.localhost</entryPointClassPackage>
+                            <targetDir>${project.basedir}/target/generated-sources/assertj-localhost</targetDir>
+                            <generateSoftAssertions>true</generateSoftAssertions>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+
         </plugins>
     </build>
 
