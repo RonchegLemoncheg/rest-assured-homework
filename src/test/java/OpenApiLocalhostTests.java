@@ -1,6 +1,7 @@
 import com.github.javafaker.Faker;
 import ge.tbc.testautomation.data.Constants;
 import ge.tbc.testautomation.data.DataSupplier;
+import ge.tbc.testautomation.steps.OpenApiLocalhostSteps;
 import io.qameta.allure.restassured.AllureRestAssured;
 import io.restassured.RestAssured;
 import io.restassured.builder.RequestSpecBuilder;
@@ -23,6 +24,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class OpenApiLocalhostTests {
     private ApiClient api;
+    private OpenApiLocalhostSteps openApiLocalhostSteps;
 
     @BeforeSuite
     public void createApiClient() {
@@ -35,6 +37,7 @@ public class OpenApiLocalhostTests {
                         .addFilter(new ErrorLoggingFilter())
                         .setBaseUri(Constants.LOCALHOST)));
         RestAssured.filters(new AllureRestAssured());
+        openApiLocalhostSteps = new OpenApiLocalhostSteps();
     }
 
     @Test
@@ -42,22 +45,12 @@ public class OpenApiLocalhostTests {
         Faker faker = new Faker();
         String email = faker.internet().emailAddress();
         String password = Constants.REAL_PASSWORD;
-        RegisterRequest registerRequest = new RegisterRequest()
-                .firstname(faker.name().firstName())
-                .lastname(faker.name().lastName())
-                .email(email)
-                .password(password)
-                .role(RegisterRequest.RoleEnum.ADMIN);
+        RegisterRequest registerRequest = openApiLocalhostSteps.generateRegistrationRequest(password, email);
 
-        Response res = api.authentication().register().body(registerRequest).execute(response -> {
-                    response.then().log().all();
-                    Assert.assertEquals(response.statusCode(), 200);
-                    return response;
-                }
-        );
+        openApiLocalhostSteps.register(api,registerRequest);
 
-        String accesss_token = res.jsonPath().getString("access_token");
-        String refresh_token = res.jsonPath().getString("refresh_token");
+        String access_token = openApiLocalhostSteps.getAccess_token();
+        String refresh_token = openApiLocalhostSteps.getRefresh_token();
 
         AuthenticationRequest authenticationRequest = new AuthenticationRequest()
                 .password(password)
@@ -89,19 +82,22 @@ public class OpenApiLocalhostTests {
             return response;
         });
 
-        Assert.assertNotEquals(accesss_token,refreshTokenResponse.getAccessToken());
+        Assert.assertNotEquals(access_token,refreshTokenResponse.getAccessToken());
+
+        // აქ ორივე ტოკენზე მუშაობს და დავაკომენტარე მაგიტო, უბრალოდ ვამოწმებ რომ შეიცვალა ტოკენი
+//        api.authorization()
+//                .sayHelloWithRoleAdminAndReadAuthority()
+//                .reqSpec(reqSpec -> reqSpec.addHeader("Authorization", "Bearer " + accesss_token))
+//                .execute(respo -> {
+//                    System.out.println(respo.statusCode());
+//                    return respo;
+//                });
 
     }
 
     @Test(dataProvider = "passwordSupplier", dataProviderClass = DataSupplier.class)
     public void passwordTest(String password) {
-        Faker faker = new Faker();
-        RegisterRequest registerRequest = new RegisterRequest()
-                .email(faker.internet().emailAddress())
-                .password(password)
-                .role(RegisterRequest.RoleEnum.ADMIN)
-                .firstname(faker.name().firstName())
-                .lastname(faker.name().lastName());
+        RegisterRequest registerRequest = openApiLocalhostSteps.generateRegistrationRequest(password);
 
         Response resp = api.authentication().register().body(registerRequest).execute(response -> {
                     response.then().log().all();
@@ -110,15 +106,7 @@ public class OpenApiLocalhostTests {
         );
         if (resp.statusCode() == 200) {
             String token = (resp.jsonPath().getString("access_token"));
-            api.authorization()
-                    .sayHelloWithRoleAdminAndReadAuthority()
-                    .reqSpec(reqSpec -> reqSpec.addHeader("Authorization", "Bearer " + token))
-                    .execute(res -> {
-                        Assert.assertEquals(res.statusCode(), 200);
-                        String responseBody = res.getBody().asString().trim();
-                        Assert.assertEquals(responseBody, Constants.HELLO_ADMIN);
-                        return res;
-                    });
+            openApiLocalhostSteps.checkAuthorization(token,api);
         }
 
     }
