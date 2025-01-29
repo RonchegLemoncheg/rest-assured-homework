@@ -2,17 +2,15 @@ package ge.tbc.testautomation.steps;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.javafaker.Faker;
-import ge.tbc.testautomation.data.models.PetStore.Category;
-import ge.tbc.testautomation.data.models.PetStore.PostPetStore;
-import ge.tbc.testautomation.data.models.PetStore.Status;
-import ge.tbc.testautomation.data.models.PetStore.TagsItem;
+import ge.tbc.testautomation.data.models.PetStore.*;
+import io.restassured.RestAssured;
 import io.restassured.response.Response;
-import io.restassured.specification.RequestSpecification;
-import org.json.JSONObject;
+import lombok.Getter;
+import util.XmlUtils;
 
+import javax.xml.bind.JAXBException;
 import java.io.File;
 import java.util.List;
-import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -20,8 +18,13 @@ import static io.restassured.RestAssured.given;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 import static org.hamcrest.Matchers.equalTo;
+import static org.testng.AssertJUnit.assertEquals;
+import static org.testng.AssertJUnit.assertNotNull;
 
 public class PetStoreSteps {
+    Pet pet;
+    @Getter
+    Pet responsePet;
     Response response;
     Faker faker = new Faker();
 
@@ -144,4 +147,48 @@ public class PetStoreSteps {
         assertThat(uploadedFileSize, equalTo((int) file.length()));
         return this;
     }
+
+
+    public PetStoreSteps createPet() {
+        pet = new Pet();
+        pet.setId(123);
+        pet.setName("Ronchegius");
+        pet.setStatus("available");
+        return this;
+    }
+
+    public PetStoreSteps serializePetToXml() throws JAXBException {
+        String petXml = XmlUtils.serializeToXml(pet);
+        System.out.println("Serialized XML:\n" + petXml);
+        return this;
+    }
+
+    public PetStoreSteps postPetXmlToApi() throws JAXBException {
+        String petXml = XmlUtils.serializeToXml(pet);
+        response = RestAssured.given()
+                .header("Content-Type", "application/xml")
+                .header("Accept", "application/xml")
+                .body(petXml)
+                .post("https://petstore3.swagger.io/api/v3/pet");
+        return this;
+    }
+
+    public PetStoreSteps validateResponse() throws JAXBException {
+        assertEquals(200, response.statusCode());
+        String responseXml = response.body().asString();
+        System.out.println("Response XML:\n" + responseXml);
+
+        responsePet = XmlUtils.deserializeFromXml(responseXml, Pet.class);
+
+        return this;
+    }
+
+    public PetStoreSteps validatePet() {
+        assertNotNull(responsePet);
+        assertEquals(pet.getId(), responsePet.getId());
+        assertEquals(pet.getName(), responsePet.getName());
+        assertEquals(pet.getStatus(), responsePet.getStatus());
+        return this;
+    }
+
 }
