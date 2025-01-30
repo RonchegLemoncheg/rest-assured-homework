@@ -33,7 +33,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   RegisterRequest.JSON_PROPERTY_PASSWORD,
   RegisterRequest.JSON_PROPERTY_ROLE
 })
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-01-28T12:48:20.235073900+04:00[Asia/Dubai]", comments = "Generator version: 7.11.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-01-30T11:49:18.045515100+04:00[Asia/Dubai]", comments = "Generator version: 7.11.0")
 public class RegisterRequest {
   public static final String JSON_PROPERTY_FIRSTNAME = "firstname";
   @jakarta.annotation.Nonnull

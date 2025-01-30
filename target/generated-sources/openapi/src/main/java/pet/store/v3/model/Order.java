@@ -35,7 +35,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   Order.JSON_PROPERTY_STATUS,
   Order.JSON_PROPERTY_COMPLETE
 })
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-01-28T12:48:19.310198800+04:00[Asia/Dubai]", comments = "Generator version: 7.11.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-01-30T13:06:39.855503900+04:00[Asia/Dubai]", comments = "Generator version: 7.11.0")
 public class Order {
   public static final String JSON_PROPERTY_ID = "id";
   @jakarta.annotation.Nullable

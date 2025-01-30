@@ -27,140 +27,40 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
  * HttpStatusCode
  */
 @JsonPropertyOrder({
-  HttpStatusCode.JSON_PROPERTY_ERROR,
-  HttpStatusCode.JSON_PROPERTY_IS2XX_SUCCESSFUL,
-  HttpStatusCode.JSON_PROPERTY_IS3XX_REDIRECTION,
-  HttpStatusCode.JSON_PROPERTY_IS4XX_CLIENT_ERROR,
   HttpStatusCode.JSON_PROPERTY_IS5XX_SERVER_ERROR,
-  HttpStatusCode.JSON_PROPERTY_IS1XX_INFORMATIONAL
+  HttpStatusCode.JSON_PROPERTY_IS4XX_CLIENT_ERROR,
+  HttpStatusCode.JSON_PROPERTY_IS1XX_INFORMATIONAL,
+  HttpStatusCode.JSON_PROPERTY_IS3XX_REDIRECTION,
+  HttpStatusCode.JSON_PROPERTY_IS2XX_SUCCESSFUL,
+  HttpStatusCode.JSON_PROPERTY_ERROR
 })
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-01-28T12:48:20.235073900+04:00[Asia/Dubai]", comments = "Generator version: 7.11.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-01-30T11:49:18.045515100+04:00[Asia/Dubai]", comments = "Generator version: 7.11.0")
 public class HttpStatusCode {
-  public static final String JSON_PROPERTY_ERROR = "error";
+  public static final String JSON_PROPERTY_IS5XX_SERVER_ERROR = "is5xxServerError";
   @jakarta.annotation.Nullable
-  private Boolean error;
-
-  public static final String JSON_PROPERTY_IS2XX_SUCCESSFUL = "is2xxSuccessful";
-  @jakarta.annotation.Nullable
-  private Boolean is2xxSuccessful;
-
-  public static final String JSON_PROPERTY_IS3XX_REDIRECTION = "is3xxRedirection";
-  @jakarta.annotation.Nullable
-  private Boolean is3xxRedirection;
+  private Boolean is5xxServerError;
 
   public static final String JSON_PROPERTY_IS4XX_CLIENT_ERROR = "is4xxClientError";
   @jakarta.annotation.Nullable
   private Boolean is4xxClientError;
 
-  public static final String JSON_PROPERTY_IS5XX_SERVER_ERROR = "is5xxServerError";
-  @jakarta.annotation.Nullable
-  private Boolean is5xxServerError;
-
   public static final String JSON_PROPERTY_IS1XX_INFORMATIONAL = "is1xxInformational";
   @jakarta.annotation.Nullable
   private Boolean is1xxInformational;
 
+  public static final String JSON_PROPERTY_IS3XX_REDIRECTION = "is3xxRedirection";
+  @jakarta.annotation.Nullable
+  private Boolean is3xxRedirection;
+
+  public static final String JSON_PROPERTY_IS2XX_SUCCESSFUL = "is2xxSuccessful";
+  @jakarta.annotation.Nullable
+  private Boolean is2xxSuccessful;
+
+  public static final String JSON_PROPERTY_ERROR = "error";
+  @jakarta.annotation.Nullable
+  private Boolean error;
+
   public HttpStatusCode() {
-  }
-
-  public HttpStatusCode error(@jakarta.annotation.Nullable Boolean error) {
-    
-    this.error = error;
-    return this;
-  }
-
-  /**
-   * Get error
-   * @return error
-   */
-  @jakarta.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_ERROR)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public Boolean getError() {
-    return error;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_ERROR)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setError(@jakarta.annotation.Nullable Boolean error) {
-    this.error = error;
-  }
-
-  public HttpStatusCode is2xxSuccessful(@jakarta.annotation.Nullable Boolean is2xxSuccessful) {
-    
-    this.is2xxSuccessful = is2xxSuccessful;
-    return this;
-  }
-
-  /**
-   * Get is2xxSuccessful
-   * @return is2xxSuccessful
-   */
-  @jakarta.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_IS2XX_SUCCESSFUL)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public Boolean getIs2xxSuccessful() {
-    return is2xxSuccessful;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_IS2XX_SUCCESSFUL)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setIs2xxSuccessful(@jakarta.annotation.Nullable Boolean is2xxSuccessful) {
-    this.is2xxSuccessful = is2xxSuccessful;
-  }
-
-  public HttpStatusCode is3xxRedirection(@jakarta.annotation.Nullable Boolean is3xxRedirection) {
-    
-    this.is3xxRedirection = is3xxRedirection;
-    return this;
-  }
-
-  /**
-   * Get is3xxRedirection
-   * @return is3xxRedirection
-   */
-  @jakarta.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_IS3XX_REDIRECTION)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public Boolean getIs3xxRedirection() {
-    return is3xxRedirection;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_IS3XX_REDIRECTION)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setIs3xxRedirection(@jakarta.annotation.Nullable Boolean is3xxRedirection) {
-    this.is3xxRedirection = is3xxRedirection;
-  }
-
-  public HttpStatusCode is4xxClientError(@jakarta.annotation.Nullable Boolean is4xxClientError) {
-    
-    this.is4xxClientError = is4xxClientError;
-    return this;
-  }
-
-  /**
-   * Get is4xxClientError
-   * @return is4xxClientError
-   */
-  @jakarta.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_IS4XX_CLIENT_ERROR)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public Boolean getIs4xxClientError() {
-    return is4xxClientError;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_IS4XX_CLIENT_ERROR)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setIs4xxClientError(@jakarta.annotation.Nullable Boolean is4xxClientError) {
-    this.is4xxClientError = is4xxClientError;
   }
 
   public HttpStatusCode is5xxServerError(@jakarta.annotation.Nullable Boolean is5xxServerError) {
@@ -188,6 +88,31 @@ public class HttpStatusCode {
     this.is5xxServerError = is5xxServerError;
   }
 
+  public HttpStatusCode is4xxClientError(@jakarta.annotation.Nullable Boolean is4xxClientError) {
+    
+    this.is4xxClientError = is4xxClientError;
+    return this;
+  }
+
+  /**
+   * Get is4xxClientError
+   * @return is4xxClientError
+   */
+  @jakarta.annotation.Nullable
+  @JsonProperty(JSON_PROPERTY_IS4XX_CLIENT_ERROR)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public Boolean getIs4xxClientError() {
+    return is4xxClientError;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_IS4XX_CLIENT_ERROR)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setIs4xxClientError(@jakarta.annotation.Nullable Boolean is4xxClientError) {
+    this.is4xxClientError = is4xxClientError;
+  }
+
   public HttpStatusCode is1xxInformational(@jakarta.annotation.Nullable Boolean is1xxInformational) {
     
     this.is1xxInformational = is1xxInformational;
@@ -213,6 +138,81 @@ public class HttpStatusCode {
     this.is1xxInformational = is1xxInformational;
   }
 
+  public HttpStatusCode is3xxRedirection(@jakarta.annotation.Nullable Boolean is3xxRedirection) {
+    
+    this.is3xxRedirection = is3xxRedirection;
+    return this;
+  }
+
+  /**
+   * Get is3xxRedirection
+   * @return is3xxRedirection
+   */
+  @jakarta.annotation.Nullable
+  @JsonProperty(JSON_PROPERTY_IS3XX_REDIRECTION)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public Boolean getIs3xxRedirection() {
+    return is3xxRedirection;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_IS3XX_REDIRECTION)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setIs3xxRedirection(@jakarta.annotation.Nullable Boolean is3xxRedirection) {
+    this.is3xxRedirection = is3xxRedirection;
+  }
+
+  public HttpStatusCode is2xxSuccessful(@jakarta.annotation.Nullable Boolean is2xxSuccessful) {
+    
+    this.is2xxSuccessful = is2xxSuccessful;
+    return this;
+  }
+
+  /**
+   * Get is2xxSuccessful
+   * @return is2xxSuccessful
+   */
+  @jakarta.annotation.Nullable
+  @JsonProperty(JSON_PROPERTY_IS2XX_SUCCESSFUL)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public Boolean getIs2xxSuccessful() {
+    return is2xxSuccessful;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_IS2XX_SUCCESSFUL)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setIs2xxSuccessful(@jakarta.annotation.Nullable Boolean is2xxSuccessful) {
+    this.is2xxSuccessful = is2xxSuccessful;
+  }
+
+  public HttpStatusCode error(@jakarta.annotation.Nullable Boolean error) {
+    
+    this.error = error;
+    return this;
+  }
+
+  /**
+   * Get error
+   * @return error
+   */
+  @jakarta.annotation.Nullable
+  @JsonProperty(JSON_PROPERTY_ERROR)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public Boolean getError() {
+    return error;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_ERROR)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setError(@jakarta.annotation.Nullable Boolean error) {
+    this.error = error;
+  }
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -222,29 +222,29 @@ public class HttpStatusCode {
       return false;
     }
     HttpStatusCode httpStatusCode = (HttpStatusCode) o;
-    return Objects.equals(this.error, httpStatusCode.error) &&
-        Objects.equals(this.is2xxSuccessful, httpStatusCode.is2xxSuccessful) &&
-        Objects.equals(this.is3xxRedirection, httpStatusCode.is3xxRedirection) &&
+    return Objects.equals(this.is5xxServerError, httpStatusCode.is5xxServerError) &&
         Objects.equals(this.is4xxClientError, httpStatusCode.is4xxClientError) &&
-        Objects.equals(this.is5xxServerError, httpStatusCode.is5xxServerError) &&
-        Objects.equals(this.is1xxInformational, httpStatusCode.is1xxInformational);
+        Objects.equals(this.is1xxInformational, httpStatusCode.is1xxInformational) &&
+        Objects.equals(this.is3xxRedirection, httpStatusCode.is3xxRedirection) &&
+        Objects.equals(this.is2xxSuccessful, httpStatusCode.is2xxSuccessful) &&
+        Objects.equals(this.error, httpStatusCode.error);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(error, is2xxSuccessful, is3xxRedirection, is4xxClientError, is5xxServerError, is1xxInformational);
+    return Objects.hash(is5xxServerError, is4xxClientError, is1xxInformational, is3xxRedirection, is2xxSuccessful, error);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class HttpStatusCode {\n");
-    sb.append("    error: ").append(toIndentedString(error)).append("\n");
-    sb.append("    is2xxSuccessful: ").append(toIndentedString(is2xxSuccessful)).append("\n");
-    sb.append("    is3xxRedirection: ").append(toIndentedString(is3xxRedirection)).append("\n");
-    sb.append("    is4xxClientError: ").append(toIndentedString(is4xxClientError)).append("\n");
     sb.append("    is5xxServerError: ").append(toIndentedString(is5xxServerError)).append("\n");
+    sb.append("    is4xxClientError: ").append(toIndentedString(is4xxClientError)).append("\n");
     sb.append("    is1xxInformational: ").append(toIndentedString(is1xxInformational)).append("\n");
+    sb.append("    is3xxRedirection: ").append(toIndentedString(is3xxRedirection)).append("\n");
+    sb.append("    is2xxSuccessful: ").append(toIndentedString(is2xxSuccessful)).append("\n");
+    sb.append("    error: ").append(toIndentedString(error)).append("\n");
     sb.append("}");
     return sb.toString();
   }

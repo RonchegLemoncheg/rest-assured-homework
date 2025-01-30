@@ -36,11 +36,11 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   ContentDisposition.JSON_PROPERTY_CREATION_DATE,
   ContentDisposition.JSON_PROPERTY_MODIFICATION_DATE,
   ContentDisposition.JSON_PROPERTY_READ_DATE,
-  ContentDisposition.JSON_PROPERTY_FORM_DATA,
   ContentDisposition.JSON_PROPERTY_INLINE,
-  ContentDisposition.JSON_PROPERTY_ATTACHMENT
+  ContentDisposition.JSON_PROPERTY_ATTACHMENT,
+  ContentDisposition.JSON_PROPERTY_FORM_DATA
 })
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-01-28T12:48:20.235073900+04:00[Asia/Dubai]", comments = "Generator version: 7.11.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-01-30T11:49:18.045515100+04:00[Asia/Dubai]", comments = "Generator version: 7.11.0")
 public class ContentDisposition {
   public static final String JSON_PROPERTY_TYPE = "type";
   @jakarta.annotation.Nullable
@@ -74,10 +74,6 @@ public class ContentDisposition {
   @jakarta.annotation.Nullable
   private OffsetDateTime readDate;
 
-  public static final String JSON_PROPERTY_FORM_DATA = "formData";
-  @jakarta.annotation.Nullable
-  private Boolean formData;
-
   public static final String JSON_PROPERTY_INLINE = "inline";
   @jakarta.annotation.Nullable
   private Boolean inline;
@@ -85,6 +81,10 @@ public class ContentDisposition {
   public static final String JSON_PROPERTY_ATTACHMENT = "attachment";
   @jakarta.annotation.Nullable
   private Boolean attachment;
+
+  public static final String JSON_PROPERTY_FORM_DATA = "formData";
+  @jakarta.annotation.Nullable
+  private Boolean formData;
 
   public ContentDisposition() {
   }
@@ -297,31 +297,6 @@ public class ContentDisposition {
     this.readDate = readDate;
   }
 
-  public ContentDisposition formData(@jakarta.annotation.Nullable Boolean formData) {
-    
-    this.formData = formData;
-    return this;
-  }
-
-  /**
-   * Get formData
-   * @return formData
-   */
-  @jakarta.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_FORM_DATA)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public Boolean getFormData() {
-    return formData;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_FORM_DATA)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setFormData(@jakarta.annotation.Nullable Boolean formData) {
-    this.formData = formData;
-  }
-
   public ContentDisposition inline(@jakarta.annotation.Nullable Boolean inline) {
     
     this.inline = inline;
@@ -372,6 +347,31 @@ public class ContentDisposition {
     this.attachment = attachment;
   }
 
+  public ContentDisposition formData(@jakarta.annotation.Nullable Boolean formData) {
+    
+    this.formData = formData;
+    return this;
+  }
+
+  /**
+   * Get formData
+   * @return formData
+   */
+  @jakarta.annotation.Nullable
+  @JsonProperty(JSON_PROPERTY_FORM_DATA)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public Boolean getFormData() {
+    return formData;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_FORM_DATA)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setFormData(@jakarta.annotation.Nullable Boolean formData) {
+    this.formData = formData;
+  }
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -389,14 +389,14 @@ public class ContentDisposition {
         Objects.equals(this.creationDate, contentDisposition.creationDate) &&
         Objects.equals(this.modificationDate, contentDisposition.modificationDate) &&
         Objects.equals(this.readDate, contentDisposition.readDate) &&
-        Objects.equals(this.formData, contentDisposition.formData) &&
         Objects.equals(this.inline, contentDisposition.inline) &&
-        Objects.equals(this.attachment, contentDisposition.attachment);
+        Objects.equals(this.attachment, contentDisposition.attachment) &&
+        Objects.equals(this.formData, contentDisposition.formData);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(type, name, filename, charset, size, creationDate, modificationDate, readDate, formData, inline, attachment);
+    return Objects.hash(type, name, filename, charset, size, creationDate, modificationDate, readDate, inline, attachment, formData);
   }
 
   @Override
@@ -411,9 +411,9 @@ public class ContentDisposition {
     sb.append("    creationDate: ").append(toIndentedString(creationDate)).append("\n");
     sb.append("    modificationDate: ").append(toIndentedString(modificationDate)).append("\n");
     sb.append("    readDate: ").append(toIndentedString(readDate)).append("\n");
-    sb.append("    formData: ").append(toIndentedString(formData)).append("\n");
     sb.append("    inline: ").append(toIndentedString(inline)).append("\n");
     sb.append("    attachment: ").append(toIndentedString(attachment)).append("\n");
+    sb.append("    formData: ").append(toIndentedString(formData)).append("\n");
     sb.append("}");
     return sb.toString();
   }

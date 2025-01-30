@@ -5,7 +5,7 @@
     <artifactId>openapi-java-client</artifactId>
     <packaging>jar</packaging>
     <name>openapi-java-client</name>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.0.19</version>
     <url>https://github.com/openapitools/openapi-generator</url>
     <description>OpenAPI Java</description>
     <scm>
@@ -17,7 +17,7 @@
     <licenses>
         <license>
             <name>Unlicense</name>
-            <url>http://unlicense.org</url>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.html</url>
             <distribution>repo</distribution>
         </license>
     </licenses>

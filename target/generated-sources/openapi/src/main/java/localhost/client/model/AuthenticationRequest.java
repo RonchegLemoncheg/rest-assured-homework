@@ -30,7 +30,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   AuthenticationRequest.JSON_PROPERTY_EMAIL,
   AuthenticationRequest.JSON_PROPERTY_PASSWORD
 })
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-01-28T12:48:20.235073900+04:00[Asia/Dubai]", comments = "Generator version: 7.11.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-01-30T11:49:18.045515100+04:00[Asia/Dubai]", comments = "Generator version: 7.11.0")
 public class AuthenticationRequest {
   public static final String JSON_PROPERTY_EMAIL = "email";
   @jakarta.annotation.Nullable

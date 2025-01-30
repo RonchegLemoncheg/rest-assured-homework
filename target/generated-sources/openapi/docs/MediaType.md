@@ -11,11 +11,11 @@
 |**subtype** | **String** |  |  [optional] |
 |**parameters** | **Map&lt;String, String&gt;** |  |  [optional] |
 |**qualityValue** | **Double** |  |  [optional] |
-|**charset** | **String** |  |  [optional] |
 |**concrete** | **Boolean** |  |  [optional] |
-|**wildcardSubtype** | **Boolean** |  |  [optional] |
 |**wildcardType** | **Boolean** |  |  [optional] |
+|**wildcardSubtype** | **Boolean** |  |  [optional] |
 |**subtypeSuffix** | **String** |  |  [optional] |
+|**charset** | **String** |  |  [optional] |
 
 
 

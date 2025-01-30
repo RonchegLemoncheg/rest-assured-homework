@@ -47,7 +47,7 @@ public class OpenApiLocalhostTests {
         String password = Constants.REAL_PASSWORD;
         RegisterRequest registerRequest = openApiLocalhostSteps.generateRegistrationRequest(password, email);
 
-        openApiLocalhostSteps.register(api,registerRequest);
+        openApiLocalhostSteps.register(api, registerRequest);
 
         String access_token = openApiLocalhostSteps.getAccess_token();
         String refresh_token = openApiLocalhostSteps.getRefresh_token();
@@ -57,23 +57,23 @@ public class OpenApiLocalhostTests {
                 .email(email);
 
         api.authentication().authenticate().body(authenticationRequest).executeAs(
-                        resp -> {
-                            Assert.assertEquals(resp.statusCode(), 200);
-                            List<String> expectedRoles = List.of(
-                                    Constants.READ_PRIVILEGE,
-                                    Constants.WRITE_PRIVILEGE,
-                                    Constants.DELETE_PRIVILEGE,
-                                    Constants.UPDATE_PRIVILEGE,
-                                    Constants.ROLE_ADMIN
-                            );
+                resp -> {
+                    Assert.assertEquals(resp.statusCode(), 200);
+                    List<String> expectedRoles = List.of(
+                            Constants.READ_PRIVILEGE,
+                            Constants.WRITE_PRIVILEGE,
+                            Constants.DELETE_PRIVILEGE,
+                            Constants.UPDATE_PRIVILEGE,
+                            Constants.ROLE_ADMIN
+                    );
 
-                            List<String> actualRoles = resp.jsonPath().getList("roles", String.class);
+                    List<String> actualRoles = resp.jsonPath().getList("roles", String.class);
 
-                            assertThat(actualRoles).containsExactlyInAnyOrderElementsOf(expectedRoles);
+                    assertThat(actualRoles).containsExactlyInAnyOrderElementsOf(expectedRoles);
 
-                            return resp;
-                        }
-                );
+                    return resp;
+                }
+        );
         RefreshTokenRequest refreshTokenRequest = new RefreshTokenRequest()
                 .refreshToken(refresh_token);
 
@@ -82,7 +82,7 @@ public class OpenApiLocalhostTests {
             return response;
         });
 
-        Assert.assertNotEquals(access_token,refreshTokenResponse.getAccessToken());
+        Assert.assertNotEquals(access_token, refreshTokenResponse.getAccessToken());
 
         // აქ ორივე ტოკენზე მუშაობს და დავაკომენტარე მაგიტო, უბრალოდ ვამოწმებ რომ შეიცვალა ტოკენი
 //        api.authorization()
@@ -106,7 +106,7 @@ public class OpenApiLocalhostTests {
         );
         if (resp.statusCode() == 200) {
             String token = (resp.jsonPath().getString("access_token"));
-            openApiLocalhostSteps.checkAuthorization(token,api);
+            openApiLocalhostSteps.checkAuthorization(token, api);
         }
 
     }

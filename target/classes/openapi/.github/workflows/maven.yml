@@ -13,7 +13,7 @@ on:
 
 jobs:
   build:
-    name: Build Spring Security 6+ APP
+    name: Build Swagger Petstore - OpenAPI 3.0
     runs-on: ubuntu-latest
     strategy:
       matrix:

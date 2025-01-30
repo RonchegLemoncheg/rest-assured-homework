@@ -26,7 +26,7 @@ After the client library is installed/deployed, you can use it in your Maven pro
 <dependency>
     <groupId>org.openapitools</groupId>
     <artifactId>openapi-java-client</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.0.19</version>
     <scope>compile</scope>
 </dependency>
 
@@ -38,5 +38,5 @@ It's recommended to create an instance of `ApiClient` per thread in a multithrea
 
 ## Author
 
-
+apiteam@swagger.io
 

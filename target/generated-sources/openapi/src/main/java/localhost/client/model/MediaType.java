@@ -33,13 +33,13 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   MediaType.JSON_PROPERTY_SUBTYPE,
   MediaType.JSON_PROPERTY_PARAMETERS,
   MediaType.JSON_PROPERTY_QUALITY_VALUE,
-  MediaType.JSON_PROPERTY_CHARSET,
   MediaType.JSON_PROPERTY_CONCRETE,
-  MediaType.JSON_PROPERTY_WILDCARD_SUBTYPE,
   MediaType.JSON_PROPERTY_WILDCARD_TYPE,
-  MediaType.JSON_PROPERTY_SUBTYPE_SUFFIX
+  MediaType.JSON_PROPERTY_WILDCARD_SUBTYPE,
+  MediaType.JSON_PROPERTY_SUBTYPE_SUFFIX,
+  MediaType.JSON_PROPERTY_CHARSET
 })
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-01-28T12:48:20.235073900+04:00[Asia/Dubai]", comments = "Generator version: 7.11.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-01-30T11:49:18.045515100+04:00[Asia/Dubai]", comments = "Generator version: 7.11.0")
 public class MediaType {
   public static final String JSON_PROPERTY_TYPE = "type";
   @jakarta.annotation.Nullable
@@ -57,25 +57,25 @@ public class MediaType {
   @jakarta.annotation.Nullable
   private Double qualityValue;
 
-  public static final String JSON_PROPERTY_CHARSET = "charset";
-  @jakarta.annotation.Nullable
-  private String charset;
-
   public static final String JSON_PROPERTY_CONCRETE = "concrete";
   @jakarta.annotation.Nullable
   private Boolean concrete;
-
-  public static final String JSON_PROPERTY_WILDCARD_SUBTYPE = "wildcardSubtype";
-  @jakarta.annotation.Nullable
-  private Boolean wildcardSubtype;
 
   public static final String JSON_PROPERTY_WILDCARD_TYPE = "wildcardType";
   @jakarta.annotation.Nullable
   private Boolean wildcardType;
 
+  public static final String JSON_PROPERTY_WILDCARD_SUBTYPE = "wildcardSubtype";
+  @jakarta.annotation.Nullable
+  private Boolean wildcardSubtype;
+
   public static final String JSON_PROPERTY_SUBTYPE_SUFFIX = "subtypeSuffix";
   @jakarta.annotation.Nullable
   private String subtypeSuffix;
+
+  public static final String JSON_PROPERTY_CHARSET = "charset";
+  @jakarta.annotation.Nullable
+  private String charset;
 
   public MediaType() {
   }
@@ -188,31 +188,6 @@ public class MediaType {
     this.qualityValue = qualityValue;
   }
 
-  public MediaType charset(@jakarta.annotation.Nullable String charset) {
-    
-    this.charset = charset;
-    return this;
-  }
-
-  /**
-   * Get charset
-   * @return charset
-   */
-  @jakarta.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_CHARSET)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public String getCharset() {
-    return charset;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_CHARSET)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCharset(@jakarta.annotation.Nullable String charset) {
-    this.charset = charset;
-  }
-
   public MediaType concrete(@jakarta.annotation.Nullable Boolean concrete) {
     
     this.concrete = concrete;
@@ -236,31 +211,6 @@ public class MediaType {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setConcrete(@jakarta.annotation.Nullable Boolean concrete) {
     this.concrete = concrete;
-  }
-
-  public MediaType wildcardSubtype(@jakarta.annotation.Nullable Boolean wildcardSubtype) {
-    
-    this.wildcardSubtype = wildcardSubtype;
-    return this;
-  }
-
-  /**
-   * Get wildcardSubtype
-   * @return wildcardSubtype
-   */
-  @jakarta.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_WILDCARD_SUBTYPE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public Boolean getWildcardSubtype() {
-    return wildcardSubtype;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_WILDCARD_SUBTYPE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setWildcardSubtype(@jakarta.annotation.Nullable Boolean wildcardSubtype) {
-    this.wildcardSubtype = wildcardSubtype;
   }
 
   public MediaType wildcardType(@jakarta.annotation.Nullable Boolean wildcardType) {
@@ -288,6 +238,31 @@ public class MediaType {
     this.wildcardType = wildcardType;
   }
 
+  public MediaType wildcardSubtype(@jakarta.annotation.Nullable Boolean wildcardSubtype) {
+    
+    this.wildcardSubtype = wildcardSubtype;
+    return this;
+  }
+
+  /**
+   * Get wildcardSubtype
+   * @return wildcardSubtype
+   */
+  @jakarta.annotation.Nullable
+  @JsonProperty(JSON_PROPERTY_WILDCARD_SUBTYPE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public Boolean getWildcardSubtype() {
+    return wildcardSubtype;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_WILDCARD_SUBTYPE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setWildcardSubtype(@jakarta.annotation.Nullable Boolean wildcardSubtype) {
+    this.wildcardSubtype = wildcardSubtype;
+  }
+
   public MediaType subtypeSuffix(@jakarta.annotation.Nullable String subtypeSuffix) {
     
     this.subtypeSuffix = subtypeSuffix;
@@ -313,6 +288,31 @@ public class MediaType {
     this.subtypeSuffix = subtypeSuffix;
   }
 
+  public MediaType charset(@jakarta.annotation.Nullable String charset) {
+    
+    this.charset = charset;
+    return this;
+  }
+
+  /**
+   * Get charset
+   * @return charset
+   */
+  @jakarta.annotation.Nullable
+  @JsonProperty(JSON_PROPERTY_CHARSET)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public String getCharset() {
+    return charset;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_CHARSET)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setCharset(@jakarta.annotation.Nullable String charset) {
+    this.charset = charset;
+  }
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -326,16 +326,16 @@ public class MediaType {
         Objects.equals(this.subtype, mediaType.subtype) &&
         Objects.equals(this.parameters, mediaType.parameters) &&
         Objects.equals(this.qualityValue, mediaType.qualityValue) &&
-        Objects.equals(this.charset, mediaType.charset) &&
         Objects.equals(this.concrete, mediaType.concrete) &&
-        Objects.equals(this.wildcardSubtype, mediaType.wildcardSubtype) &&
         Objects.equals(this.wildcardType, mediaType.wildcardType) &&
-        Objects.equals(this.subtypeSuffix, mediaType.subtypeSuffix);
+        Objects.equals(this.wildcardSubtype, mediaType.wildcardSubtype) &&
+        Objects.equals(this.subtypeSuffix, mediaType.subtypeSuffix) &&
+        Objects.equals(this.charset, mediaType.charset);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(type, subtype, parameters, qualityValue, charset, concrete, wildcardSubtype, wildcardType, subtypeSuffix);
+    return Objects.hash(type, subtype, parameters, qualityValue, concrete, wildcardType, wildcardSubtype, subtypeSuffix, charset);
   }
 
   @Override
@@ -346,11 +346,11 @@ public class MediaType {
     sb.append("    subtype: ").append(toIndentedString(subtype)).append("\n");
     sb.append("    parameters: ").append(toIndentedString(parameters)).append("\n");
     sb.append("    qualityValue: ").append(toIndentedString(qualityValue)).append("\n");
-    sb.append("    charset: ").append(toIndentedString(charset)).append("\n");
     sb.append("    concrete: ").append(toIndentedString(concrete)).append("\n");
-    sb.append("    wildcardSubtype: ").append(toIndentedString(wildcardSubtype)).append("\n");
     sb.append("    wildcardType: ").append(toIndentedString(wildcardType)).append("\n");
+    sb.append("    wildcardSubtype: ").append(toIndentedString(wildcardSubtype)).append("\n");
     sb.append("    subtypeSuffix: ").append(toIndentedString(subtypeSuffix)).append("\n");
+    sb.append("    charset: ").append(toIndentedString(charset)).append("\n");
     sb.append("}");
     return sb.toString();
   }

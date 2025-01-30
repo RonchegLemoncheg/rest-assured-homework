@@ -15,9 +15,9 @@
 |**creationDate** | **OffsetDateTime** |  |  [optional] |
 |**modificationDate** | **OffsetDateTime** |  |  [optional] |
 |**readDate** | **OffsetDateTime** |  |  [optional] |
-|**formData** | **Boolean** |  |  [optional] |
 |**inline** | **Boolean** |  |  [optional] |
 |**attachment** | **Boolean** |  |  [optional] |
+|**formData** | **Boolean** |  |  [optional] |
 
 
 

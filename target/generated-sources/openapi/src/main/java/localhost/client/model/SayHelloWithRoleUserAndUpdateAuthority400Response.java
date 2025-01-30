@@ -26,7 +26,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 @JsonPropertyOrder({
 })
 @JsonTypeName("sayHelloWithRoleUserAndUpdateAuthority_400_response")
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-01-28T12:48:20.235073900+04:00[Asia/Dubai]", comments = "Generator version: 7.11.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-01-30T11:49:18.045515100+04:00[Asia/Dubai]", comments = "Generator version: 7.11.0")
 public class SayHelloWithRoleUserAndUpdateAuthority400Response {
   public SayHelloWithRoleUserAndUpdateAuthority400Response() {
   }
