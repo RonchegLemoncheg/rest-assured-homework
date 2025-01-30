@@ -1,7 +1,12 @@
+import ge.tbc.testautomation.data.Constants;
+import io.qameta.allure.restassured.AllureRestAssured;
+import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import io.restassured.path.xml.XmlPath;
+
+import java.lang.constant.Constable;
 import java.util.List;
 import java.util.stream.Collectors;
 import static io.restassured.RestAssured.given;
@@ -24,6 +29,7 @@ public class TestSoap {
                 .then()
                 .statusCode(200)
                 .extract().response();
+        RestAssured.filters(new AllureRestAssured());
 
         XmlPath xmlPath = new XmlPath(response.asString());
 
@@ -32,12 +38,10 @@ public class TestSoap {
 
         assertThat(sNames.size(), greaterThan(0));
 
-        assertThat(sNames, not(empty()));
-
         String sNameForAN = xmlPath.getString("ArrayOftContinent.tContinent.find { it.sCode == 'AN' }.sName");
-        Assert.assertEquals(sNameForAN,"Antarctica");
+        Assert.assertEquals(sNameForAN, Constants.ANTARCTICA);
 
-        Assert.assertEquals(sNames.getLast(),"The Americas");
+        Assert.assertEquals(sNames.getLast(),Constants.THE_AMERICAS);
 
         Assert.assertEquals((int)sNames.size(),sNames.stream().distinct().count());
 
@@ -55,10 +59,10 @@ public class TestSoap {
         List<String> sortedSNames = sNames.stream().sorted().collect(Collectors.toList());
         assertThat(sNames, equalTo(sortedSNames));
 
-        assertThat(sNames, hasItems("Africa", "Antarctica", "Asia", "Europe", "The Americas", "Ocenania"));
+        assertThat(sNames, hasItems(Constants.AFRICA, Constants.ANTARCTICA, Constants.EUROPE, Constants.ASIA, Constants.OCENANIA, Constants.THE_AMERICAS));
 
         String oceania = xmlPath.getString("ArrayOftContinent.tContinent.find { it.sCode == 'OC' }.sName");
-        assertThat(oceania, equalTo("Ocenania"));
+        assertThat(oceania, equalTo(Constants.OCENANIA));
 
         List<String> filteredSNames = sNames.stream()
                 .filter(name -> name.startsWith("A") && name.endsWith("ca"))

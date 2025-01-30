@@ -41,5 +41,21 @@ public class Constants {
     public static final String ROLE_ADMIN = "ROLE_ADMIN";
     public static final String SWAGGER_LINK = "https://petstore3.swagger.io/api/v3";
     public static final String HELLO_ADMIN = "Hello, you have access to a protected resource that requires admin role and read authority.";
+    public static final String ANTARCTICA = "Antarctica";
+    public static final String THE_AMERICAS = "The Americas";
+    public static final String OCENANIA = "Ocenania";
+    public static final String ASIA = "Asia";
+    public static final String EUROPE = "Europe";
+    public static final String AFRICA = "Africa";
+    public static final String RONCHEG_LEMONCHEG = "Roncheg Lemoncheg";
+    public static final String MANAGEMENT = "Management";
+    public static final String JOHN_DOE = "John Doe";
+    public static final String IT = "IT";
+    public static final String MAIN_ST = "123 Main St";
+    public static final String SERVICE_URL = "http://localhost:8087/ws";
+    public static final String ADD_EMPLOYEE_ACTION = "http://interfaces.soap.springboot.example.com/addEmployee";
+    public static final String GET_EMPLOYEE_ACTION = "http://interfaces.soap.springboot.example.com/getEmployeeById";
+    public static final String UPDATE_EMPLOYEE_ACTION = "http://interfaces.soap.springboot.example.com/updateEmployee";
+    public static final String DELETE_EMPLOYEE_ACTION = "http://interfaces.soap.springboot.example.com/deleteEmployee";
 
 }
