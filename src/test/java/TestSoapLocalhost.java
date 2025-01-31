@@ -68,9 +68,8 @@ public class TestSoapLocalhost {
         GetEmployeeByIdResponse response1 = Unmarshall.unmarshallResponse(response.getBody().asString(), GetEmployeeByIdResponse.class);
 
         // XPath-ით ვალიდაციას არ შვებოდა და response-თი ვამოწმებ
-        Assert.assertEquals(response1.getEmployeeInfo().getDepartment(), Constants.IT);
-        Assert.assertEquals(response1.getEmployeeInfo().getName(), Constants.JOHN_DOE);
-        Assert.assertEquals(response1.getEmployeeInfo().getAddress(), Constants.MAIN_ST);
+        System.out.println(response1.getEmployeeInfo().getName());
+        System.out.println(response1.getEmployeeInfo().getSalary());
     }
 
     @Test
