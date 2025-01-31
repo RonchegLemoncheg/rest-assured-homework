@@ -1,0 +1,98 @@
+
+package org.tempuri;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+import jakarta.xml.bind.annotation.XmlAccessType;
+import jakarta.xml.bind.annotation.XmlAccessorType;
+import jakarta.xml.bind.annotation.XmlElement;
+import jakarta.xml.bind.annotation.XmlType;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
+
+
+/**
+ * <p>Java class for ArrayOfPersonIdentificationPersonIdentification complex type.
+ * 
+ * <p>The following schema fragment specifies the expected content contained within this class.
+ * 
+ * <pre>
+ * &lt;complexType name="ArrayOfPersonIdentificationPersonIdentification"&gt;
+ *   &lt;complexContent&gt;
+ *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+ *       &lt;sequence&gt;
+ *         &lt;element name="PersonIdentification" type="{http://tempuri.org}PersonIdentification" maxOccurs="unbounded" minOccurs="0"/&gt;
+ *       &lt;/sequence&gt;
+ *     &lt;/restriction&gt;
+ *   &lt;/complexContent&gt;
+ * &lt;/complexType&gt;
+ * </pre>
+ * 
+ * 
+ */
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlType(name = "ArrayOfPersonIdentificationPersonIdentification", propOrder = {
+    "personIdentification"
+})
+public class ArrayOfPersonIdentificationPersonIdentification {
+
+    @XmlElement(name = "PersonIdentification", nillable = true)
+    protected List<PersonIdentification> personIdentification;
+
+    /**
+     * Gets the value of the personIdentification property.
+     * 
+     * <p>
+     * This accessor method returns a reference to the live list,
+     * not a snapshot. Therefore any modification you make to the
+     * returned list will be present inside the Jakarta XML Binding object.
+     * This is why there is not a <CODE>set</CODE> method for the personIdentification property.
+     * 
+     * <p>
+     * For example, to add a new item, do as follows:
+     * <pre>
+     *    getPersonIdentification().add(newItem);
+     * </pre>
+     * 
+     * 
+     * <p>
+     * Objects of the following type(s) are allowed in the list
+     * {@link PersonIdentification }
+     * 
+     * 
+     */
+    public List<PersonIdentification> getPersonIdentification() {
+        if (personIdentification == null) {
+            personIdentification = new ArrayList<PersonIdentification>();
+        }
+        return this.personIdentification;
+    }
+
+    public ArrayOfPersonIdentificationPersonIdentification withPersonIdentification(PersonIdentification... values) {
+        if (values!= null) {
+            for (PersonIdentification value: values) {
+                getPersonIdentification().add(value);
+            }
+        }
+        return this;
+    }
+
+    public ArrayOfPersonIdentificationPersonIdentification withPersonIdentification(Collection<PersonIdentification> values) {
+        if (values!= null) {
+            getPersonIdentification().addAll(values);
+        }
+        return this;
+    }
+
+    /**
+     * Generates a String representation of the contents of this type.
+     * This is an extension method, produced by the 'ts' xjc plugin
+     * 
+     */
+    @Override
+    public String toString() {
+        return ToStringBuilder.reflectionToString(this, ToStringStyle.DEFAULT_STYLE);
+    }
+
+}

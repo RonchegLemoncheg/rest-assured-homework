@@ -57,5 +57,10 @@ public class Constants {
     public static final String GET_EMPLOYEE_ACTION = "http://interfaces.soap.springboot.example.com/getEmployeeById";
     public static final String UPDATE_EMPLOYEE_ACTION = "http://interfaces.soap.springboot.example.com/updateEmployee";
     public static final String DELETE_EMPLOYEE_ACTION = "http://interfaces.soap.springboot.example.com/deleteEmployee";
-
+public static final String SERVICE_URL2 = "https://www.crcind.com:443/csp/samples/SOAP.Demo.cls";
+public static final String FIND_PERSON_ACTION = "http://tempuri.org/SOAP.Demo.FindPerson";
+public static final String TEN = "10";
+public static final String EMAIL = "john.doe@example.com";
+public static final String PHONE = "123-456-7890";
+public static final String NEW_PHONE = "555-70-70-70";
 }

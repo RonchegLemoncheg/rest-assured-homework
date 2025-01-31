@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-    <project xmlns="http://maven.apache.org/POM/4.0.0"
-             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-             xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>ge.tbc.tbcacademy</groupId>
@@ -111,6 +111,11 @@
             <version>4.0.5</version>
         </dependency>
         <dependency>
+            <groupId>org.jvnet.jaxb2_commons</groupId>
+            <artifactId>jaxb2-fluent-api</artifactId>
+            <version>3.0</version>
+        </dependency>
+        <dependency>
             <groupId>com.sun.xml.ws</groupId>
             <artifactId>jaxws-ri</artifactId>
             <version>4.0.2</version>
@@ -179,7 +184,26 @@
             <artifactId>commons-codec</artifactId>
             <version>${commons-codec.version}</version>
         </dependency>
-
+        <dependency>
+            <groupId>org.apache.cxf.xjc-utils</groupId>
+            <artifactId>cxf-xjc-runtime</artifactId>
+            <version>4.0.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.cxf.xjcplugins</groupId>
+            <artifactId>cxf-xjc-ts</artifactId>
+            <version>4.0.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jvnet.jaxb2_commons</groupId>
+            <artifactId>jaxb2-value-constructor</artifactId>
+            <version>3.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>3.14.0</version>
+        </dependency>
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
@@ -236,109 +260,108 @@
                 </configuration>
             </plugin>
 
-<!--            <plugin>-->
-<!--                <groupId>org.openapitools</groupId>-->
-<!--                <artifactId>openapi-generator-maven-plugin</artifactId>-->
-<!--                <version>${openapi-generator-maven-plugin.version}</version>-->
-<!--                <executions>-->
-<!--                    <execution>-->
-<!--                        <id>generate-petstore-client-api-code</id>-->
-<!--                        <goals>-->
-<!--                            <goal>generate</goal>-->
-<!--                        </goals>-->
-<!--                        <phase>generate-sources</phase>-->
-<!--                        <configuration>-->
-<!--                            <inputSpec>https://petstore3.swagger.io/api/v3/openapi.json</inputSpec>-->
-<!--                            <invokerPackage>pet.store.v3.invoker</invokerPackage>-->
-<!--                            <apiPackage>pet.store.v3.api</apiPackage>-->
-<!--                            <modelPackage>pet.store.v3.model</modelPackage>-->
-<!--                            <generatorName>java</generatorName>-->
-<!--                            <generateApiTests>false</generateApiTests>-->
-<!--                            <generateModelTests>false</generateModelTests>-->
-<!--                            <configOptions>-->
-<!--                                <identifierNamingConvention>original</identifierNamingConvention>-->
-<!--                                <library>rest-assured</library>-->
-<!--                                <serializationLibrary>jackson</serializationLibrary>-->
-<!--                                <useJakartaEe>true</useJakartaEe>-->
-<!--                            </configOptions>-->
-<!--                        </configuration>-->
-<!--                    </execution>-->
+            <!--            <plugin>-->
+            <!--                <groupId>org.openapitools</groupId>-->
+            <!--                <artifactId>openapi-generator-maven-plugin</artifactId>-->
+            <!--                <version>${openapi-generator-maven-plugin.version}</version>-->
+            <!--                <executions>-->
+            <!--                    <execution>-->
+            <!--                        <id>generate-petstore-client-api-code</id>-->
+            <!--                        <goals>-->
+            <!--                            <goal>generate</goal>-->
+            <!--                        </goals>-->
+            <!--                        <phase>generate-sources</phase>-->
+            <!--                        <configuration>-->
+            <!--                            <inputSpec>https://petstore3.swagger.io/api/v3/openapi.json</inputSpec>-->
+            <!--                            <invokerPackage>pet.store.v3.invoker</invokerPackage>-->
+            <!--                            <apiPackage>pet.store.v3.api</apiPackage>-->
+            <!--                            <modelPackage>pet.store.v3.model</modelPackage>-->
+            <!--                            <generatorName>java</generatorName>-->
+            <!--                            <generateApiTests>false</generateApiTests>-->
+            <!--                            <generateModelTests>false</generateModelTests>-->
+            <!--                            <configOptions>-->
+            <!--                                <identifierNamingConvention>original</identifierNamingConvention>-->
+            <!--                                <library>rest-assured</library>-->
+            <!--                                <serializationLibrary>jackson</serializationLibrary>-->
+            <!--                                <useJakartaEe>true</useJakartaEe>-->
+            <!--                            </configOptions>-->
+            <!--                        </configuration>-->
+            <!--                    </execution>-->
 
-<!--                    <execution>-->
-<!--                        <id>generate-localhost-client-api-code</id>-->
-<!--                        <goals>-->
-<!--                            <goal>generate</goal>-->
-<!--                        </goals>-->
-<!--                        <phase>generate-sources</phase>-->
-<!--                        <configuration>-->
-<!--                            <inputSpec>http://localhost:8086/v3/api-docs.yaml</inputSpec>-->
-<!--                            <invokerPackage>localhost.client.invoker</invokerPackage>-->
-<!--                            <apiPackage>localhost.client.api</apiPackage>-->
-<!--                            <modelPackage>localhost.client.model</modelPackage>-->
-<!--                            <generatorName>java</generatorName>-->
-<!--                            <generateApiTests>false</generateApiTests>-->
-<!--                            <generateModelTests>false</generateModelTests>-->
-<!--                            <configOptions>-->
-<!--                                <identifierNamingConvention>original</identifierNamingConvention>-->
-<!--                                <library>rest-assured</library>-->
-<!--                                <serializationLibrary>jackson</serializationLibrary>-->
-<!--                                <useJakartaEe>true</useJakartaEe>-->
-<!--                            </configOptions>-->
-<!--                        </configuration>-->
-<!--                    </execution>-->
+            <!--                    <execution>-->
+            <!--                        <id>generate-localhost-client-api-code</id>-->
+            <!--                        <goals>-->
+            <!--                            <goal>generate</goal>-->
+            <!--                        </goals>-->
+            <!--                        <phase>generate-sources</phase>-->
+            <!--                        <configuration>-->
+            <!--                            <inputSpec>http://localhost:8086/v3/api-docs.yaml</inputSpec>-->
+            <!--                            <invokerPackage>localhost.client.invoker</invokerPackage>-->
+            <!--                            <apiPackage>localhost.client.api</apiPackage>-->
+            <!--                            <modelPackage>localhost.client.model</modelPackage>-->
+            <!--                            <generatorName>java</generatorName>-->
+            <!--                            <generateApiTests>false</generateApiTests>-->
+            <!--                            <generateModelTests>false</generateModelTests>-->
+            <!--                            <configOptions>-->
+            <!--                                <identifierNamingConvention>original</identifierNamingConvention>-->
+            <!--                                <library>rest-assured</library>-->
+            <!--                                <serializationLibrary>jackson</serializationLibrary>-->
+            <!--                                <useJakartaEe>true</useJakartaEe>-->
+            <!--                            </configOptions>-->
+            <!--                        </configuration>-->
+            <!--                    </execution>-->
 
-<!--                </executions>-->
-<!--            </plugin>-->
+            <!--                </executions>-->
+            <!--            </plugin>-->
 
-<!--            <plugin>-->
-<!--                <groupId>org.assertj</groupId>-->
-<!--                <artifactId>assertj-assertions-generator-maven-plugin</artifactId>-->
-<!--                <version>2.2.0</version>-->
-<!--                <executions>-->
-<!--                    <execution>-->
-<!--                        <id>assertj</id>-->
-<!--                        <goals>-->
-<!--                            <goal>generate-assertions</goal>-->
-<!--                        </goals>-->
-<!--                        <phase>generate-sources</phase>-->
-<!--                    </execution>-->
-<!--                </executions>-->
-<!--                <configuration>-->
-<!--                    <packages>-->
-<!--                        <param>pet.store.v3.model</param>-->
-<!--                    </packages>-->
-<!--                    <hierarchical>true</hierarchical>-->
-<!--                    <entryPointClassPackage>org.assertj</entryPointClassPackage>-->
-<!--                    <targetDir>${project.basedir}/target/generated-sources/assertj</targetDir>-->
-<!--                    <generateSoftAssertions>true</generateSoftAssertions>-->
-<!--                </configuration>-->
-<!--            </plugin>-->
+            <!--            <plugin>-->
+            <!--                <groupId>org.assertj</groupId>-->
+            <!--                <artifactId>assertj-assertions-generator-maven-plugin</artifactId>-->
+            <!--                <version>2.2.0</version>-->
+            <!--                <executions>-->
+            <!--                    <execution>-->
+            <!--                        <id>assertj</id>-->
+            <!--                        <goals>-->
+            <!--                            <goal>generate-assertions</goal>-->
+            <!--                        </goals>-->
+            <!--                        <phase>generate-sources</phase>-->
+            <!--                    </execution>-->
+            <!--                </executions>-->
+            <!--                <configuration>-->
+            <!--                    <packages>-->
+            <!--                        <param>pet.store.v3.model</param>-->
+            <!--                    </packages>-->
+            <!--                    <hierarchical>true</hierarchical>-->
+            <!--                    <entryPointClassPackage>org.assertj</entryPointClassPackage>-->
+            <!--                    <targetDir>${project.basedir}/target/generated-sources/assertj</targetDir>-->
+            <!--                    <generateSoftAssertions>true</generateSoftAssertions>-->
+            <!--                </configuration>-->
+            <!--            </plugin>-->
 
 
-<!--            <plugin>-->
-<!--                <groupId>org.assertj</groupId>-->
-<!--                <artifactId>assertj-assertions-generator-maven-plugin</artifactId>-->
-<!--                <version>2.2.0</version>-->
-<!--                <executions>-->
-<!--                    <execution>-->
-<!--                        <id>assertj</id>-->
-<!--                        <goals>-->
-<!--                            <goal>generate-assertions</goal>-->
-<!--                        </goals>-->
-<!--                        <phase>generate-sources</phase>-->
-<!--                        <configuration>-->
-<!--                            <packages>-->
-<!--                                <param>localhost.client.model</param>-->
-<!--                            </packages>-->
-<!--                            <hierarchical>true</hierarchical>-->
-<!--                            <entryPointClassPackage>org.assertj.localhost</entryPointClassPackage>-->
-<!--                            <targetDir>${project.basedir}/target/generated-sources/assertj-localhost</targetDir>-->
-<!--                            <generateSoftAssertions>true</generateSoftAssertions>-->
-<!--                        </configuration>-->
-<!--                    </execution>-->
-<!--                </executions>-->
-<!--            </plugin>-->
-
+            <!--            <plugin>-->
+            <!--                <groupId>org.assertj</groupId>-->
+            <!--                <artifactId>assertj-assertions-generator-maven-plugin</artifactId>-->
+            <!--                <version>2.2.0</version>-->
+            <!--                <executions>-->
+            <!--                    <execution>-->
+            <!--                        <id>assertj</id>-->
+            <!--                        <goals>-->
+            <!--                            <goal>generate-assertions</goal>-->
+            <!--                        </goals>-->
+            <!--                        <phase>generate-sources</phase>-->
+            <!--                        <configuration>-->
+            <!--                            <packages>-->
+            <!--                                <param>localhost.client.model</param>-->
+            <!--                            </packages>-->
+            <!--                            <hierarchical>true</hierarchical>-->
+            <!--                            <entryPointClassPackage>org.assertj.localhost</entryPointClassPackage>-->
+            <!--                            <targetDir>${project.basedir}/target/generated-sources/assertj-localhost</targetDir>-->
+            <!--                            <generateSoftAssertions>true</generateSoftAssertions>-->
+            <!--                        </configuration>-->
+            <!--                    </execution>-->
+            <!--                </executions>-->
+            <!--            </plugin>-->
 
 
             <plugin>
@@ -350,10 +373,22 @@
                         <id>generate-sources</id>
                         <phase>generate-sources</phase>
                         <configuration>
+                            <additionalJvmArgs>-Djavax.xml.accessExternalDTD=all -Djavax.xml.accessExternalSchema=all
+                            </additionalJvmArgs>
                             <sourceRoot>${project.build.directory}/generated-sources</sourceRoot>
                             <wsdlOptions>
                                 <wsdlOption>
-                                    <wsdl>${project.basedir}/src/main/resources/soapdemo.wsdl</wsdl>
+                                    <wsdl>${project.basedir}/src/main/resources/SOAP.Demo.wsdl</wsdl>
+                                    <extraargs>
+                                        <extraarg>-validate</extraarg>
+                                        <extraarg>-xjc-Xfluent-api</extraarg>
+                                        <extraarg>
+                                            -xjc-Xts:style:org.apache.commons.lang3.builder.ToStringStyle.DEFAULT_STYLE
+                                        </extraarg>
+                                    </extraargs>
+                                    <bindingFiles>
+                                        <bindingFile>http://www.w3.org/2001/XMLSchema.xsd</bindingFile>
+                                    </bindingFiles>
                                 </wsdlOption>
                             </wsdlOptions>
                         </configuration>
@@ -362,11 +397,36 @@
                         </goals>
                     </execution>
                 </executions>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.jvnet.jaxb2_commons</groupId>
+                        <artifactId>jaxb2-fluent-api</artifactId>
+                        <version>3.0</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>org.apache.cxf.xjc-utils</groupId>
+                        <artifactId>cxf-xjc-runtime</artifactId>
+                        <version>4.0.1</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>org.apache.cxf.xjcplugins</groupId>
+                        <artifactId>cxf-xjc-ts</artifactId>
+                        <version>4.0.1</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>org.jvnet.jaxb2_commons</groupId>
+                        <artifactId>jaxb2-value-constructor</artifactId>
+                        <version>3.0</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>org.apache.commons</groupId>
+                        <artifactId>commons-lang3</artifactId>
+                        <version>3.13.0</version>
+                    </dependency>
+                </dependencies>
             </plugin>
         </plugins>
     </build>
 
 
-
-
-    </project>
+</project>

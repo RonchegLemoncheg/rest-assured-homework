@@ -1,7 +1,7 @@
 import com.example.springboot.soap.interfaces.*;
 import db.models.Employee;
-import db.models.Person;
 import ge.tbc.testautomation.data.Constants;
+import ge.tbc.testautomation.steps.EmployeeMapperSteps;
 import io.qameta.allure.restassured.AllureRestAssured;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
@@ -14,14 +14,11 @@ import util.Unmarshall;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.List;
 
 import static config.DataBaseConfig.dbMapper;
-import static org.testng.Assert.assertEquals;
-import static org.testng.AssertJUnit.assertNotNull;
-import static org.testng.AssertJUnit.assertNull;
 
-public class PersonMapperTest {
+
+public class EmployeeMapperTest {
 
     private static final String SERVICE_URL = Constants.SERVICE_URL;
     private static final String ADD_EMPLOYEE_ACTION = Constants.ADD_EMPLOYEE_ACTION;
@@ -29,33 +26,26 @@ public class PersonMapperTest {
     private static final String UPDATE_EMPLOYEE_ACTION = Constants.UPDATE_EMPLOYEE_ACTION;
     private static final String DELETE_EMPLOYEE_ACTION = Constants.DELETE_EMPLOYEE_ACTION;
     ObjectFactory factory;
+    EmployeeMapperSteps employeeMapperSteps;
 
     @BeforeTest
-    public void setUp(){
+    public void setUp() {
         RestAssured.filters(new AllureRestAssured());
         factory = new ObjectFactory();
+        employeeMapperSteps = new EmployeeMapperSteps();
     }
 
     @Test
     public void testInsert() {
         dbMapper().count();
-        Employee employee = new Employee();
-        employee.setEmployeeId(1L);
-        employee.setName("John Doe");
-        employee.setDepartment("Engineering");
-        employee.setPhone("123-456-7890");
-        employee.setAddress("123 Main St");
-        employee.setSalary(new BigDecimal("75000.00"));
-        employee.setEmail("john.doe@example.com");
-        employee.setBirthDate(LocalDate.of(1990, 5, 15));
-
+        Employee employee = employeeMapperSteps.createEmployee();
         dbMapper().insertEmployee(employee);
         System.out.println("Inserted Employee ID: " + employee.getEmployeeId());
     }
 
 
     @Test
-    public void testGetByID(){
+    public void testGetByID() {
         long employeeId = 1L;
         Employee employee = dbMapper().selectById(employeeId);
 
@@ -67,27 +57,22 @@ public class PersonMapperTest {
         Response response = SoapServiceSender.send(SERVICE_URL, GET_EMPLOYEE_ACTION, soapRequest);
 
         GetEmployeeByIdResponse response1 = Unmarshall.unmarshallResponse(response.getBody().asString(), GetEmployeeByIdResponse.class);
-
-        Assert.assertEquals(response1.getEmployeeInfo().getName(),employee.getName());
-        Assert.assertEquals(response1.getEmployeeInfo().getAddress(),employee.getAddress());
-        Assert.assertEquals(response1.getEmployeeInfo().getEmail(),employee.getEmail());
-        Assert.assertEquals(response1.getEmployeeInfo().getPhone(),employee.getPhone());
-        Assert.assertEquals(response1.getEmployeeInfo().getSalary(),employee.getSalary());
+        employeeMapperSteps.validateEmployees(response1, employee);
 
     }
 
     @Test
-    public void updateIDUsingDB(){
+    public void updateIDUsingDB() {
         long employeeId = 1L;
 
         Employee employee = new Employee();
         employee.setEmployeeId(employeeId);
-        employee.setName("Ronchegius Lemonchegius"); //
-        employee.setDepartment("IT"); //
-        employee.setPhone("555-70-70-70"); //
-        employee.setAddress("123 Main St");
-        employee.setSalary(new BigDecimal("75000.00"));
-        employee.setEmail("john.doe@example.com");
+        employee.setName(Constants.RONCHEG_LEMONCHEG); //
+        employee.setDepartment(Constants.IT); //
+        employee.setPhone(Constants.NEW_PHONE); //
+        employee.setAddress(Constants.MAIN_ST);
+        employee.setSalary(new BigDecimal(Constants.TEN));
+        employee.setEmail(Constants.EMAIL);
         employee.setBirthDate(LocalDate.of(1990, 5, 15));
 
         dbMapper().updateEmployee(employee);
@@ -101,15 +86,15 @@ public class PersonMapperTest {
 
         GetEmployeeByIdResponse response1 = Unmarshall.unmarshallResponse(response.getBody().asString(), GetEmployeeByIdResponse.class);
 
-        Assert.assertEquals(response1.getEmployeeInfo().getName(), "Ronchegius Lemonchegius");
-        Assert.assertEquals(response1.getEmployeeInfo().getDepartment(), "IT");
-        Assert.assertEquals(response1.getEmployeeInfo().getPhone(), "555-70-70-70");
+        Assert.assertEquals(response1.getEmployeeInfo().getName(), Constants.RONCHEG_LEMONCHEG);
+        Assert.assertEquals(response1.getEmployeeInfo().getDepartment(), Constants.IT);
+        Assert.assertEquals(response1.getEmployeeInfo().getPhone(), Constants.NEW_PHONE);
 
     }
 
 
     @Test
-    public void deleteEmployeeTest(){
+    public void deleteEmployeeTest() {
         int countBeforeDelete = dbMapper().count();
         long employeeId = 1;
 
@@ -130,10 +115,10 @@ public class PersonMapperTest {
 
         Response response1 = SoapServiceSender.send(SERVICE_URL, GET_EMPLOYEE_ACTION, soapRequest1);
 
-        Assert.assertEquals(response1.statusCode(),500);
+        Assert.assertEquals(response1.statusCode(), 500);
 
         int countAfterDelete = dbMapper().count();
-        Assert.assertEquals(countAfterDelete+1,countBeforeDelete);
+        Assert.assertEquals(countAfterDelete + 1, countBeforeDelete);
 
     }
 
