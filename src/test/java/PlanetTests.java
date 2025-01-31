@@ -1,9 +1,19 @@
+import ge.tbc.testautomation.steps.OrderSteps;
 import ge.tbc.testautomation.steps.PlanetSteps;
+import io.qameta.allure.restassured.AllureRestAssured;
+import io.restassured.RestAssured;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 public class PlanetTests {
 
-    private final PlanetSteps steps = new PlanetSteps();
+    PlanetSteps steps;
+
+    @BeforeMethod
+    public void setUp(){
+        steps = new PlanetSteps();
+        RestAssured.filters(new AllureRestAssured());
+    }
 
     @Test
     public void validateTop3RecentPlanets() throws Exception {

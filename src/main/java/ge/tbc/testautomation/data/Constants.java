@@ -32,5 +32,14 @@ public class Constants {
     public static final String MARIJN_HAVERBEKE = "Marijn Haverbeke";
     public static final String NICHOLAS_ZAKAS = "Nicholas C. Zakas";
     public static final String AUTH_LINK_escuelajs = "https://api.escuelajs.co/api";
+    public static final String REAL_PASSWORD = "Password123!";
+    public static final String LOCALHOST = "http://localhost:8086";
+    public static final String READ_PRIVILEGE = "READ_PRIVILEGE";
+    public static final String WRITE_PRIVILEGE = "WRITE_PRIVILEGE";
+    public static final String DELETE_PRIVILEGE = "DELETE_PRIVILEGE";
+    public static final String UPDATE_PRIVILEGE = "UPDATE_PRIVILEGE";
+    public static final String ROLE_ADMIN = "ROLE_ADMIN";
+    public static final String SWAGGER_LINK = "https://petstore3.swagger.io/api/v3";
+    public static final String HELLO_ADMIN = "Hello, you have access to a protected resource that requires admin role and read authority.";
 
 }
